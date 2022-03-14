@@ -13,7 +13,7 @@ app.use(
     cookie: { secure: false },
   })
 )
-app.use(express.static('public'))
+app.use('/', express.static('public'))
 app.use(cookieParser())
 app.use(bodyParser.json())
 
