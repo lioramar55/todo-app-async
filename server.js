@@ -4,6 +4,8 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const app = express()
+const path = require('path')
+const port = process.env.PORT || 8080
 
 app.use(
   session({
@@ -13,11 +15,13 @@ app.use(
     cookie: { secure: false },
   })
 )
-app.use('/', express.static('public'))
+// app.use('/', express.static('public'))
+app.use('/', express.static(path.join(__dirname, 'public')))
+
 app.use(cookieParser())
 app.use(bodyParser.json())
 
-const port = 8080
+// const port = 8080
 
 app.get('/', (req, res) => {})
 
