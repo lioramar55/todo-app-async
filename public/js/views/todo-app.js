@@ -1,17 +1,19 @@
 import todoList from '../cmps/todo-list.cmp.js'
-import todoAdd from '../cmps/todo-add.cmp.js'
 import todoFilter from '../cmps/todo-filter.cmp.js'
 
 export default {
   template: `
     <section class="todo-app">
       <todo-filter @set-filter="onSetFilter"></todo-filter>
-      <todo-add @add-todo="onAddTodo"></todo-add>
+      <button @click="$router.push('/todo/edit')">Add todo</button>
+      <button @click="setPage(-1)">Prev</button>
+      <button @click="setPage(1)">Next</button>
       <todo-list 
         :todos="todos"
         @delete-todo="onDeleteTodo"
         @toggle-todo="onToggleTodo"
       ></todo-list>
+
     </section>
   `,
   data() {
@@ -26,10 +28,12 @@ export default {
   },
   components: {
     todoList,
-    todoAdd,
     todoFilter,
   },
   methods: {
+    setPage(diff) {
+      this.$store.commit({ type: 'setPage', diff })
+    },
     onAddTodo(todo) {
       this.$store.dispatch({
         type: 'addTodo',

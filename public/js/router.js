@@ -17,7 +17,7 @@ const routes = [
     component: todoDetails,
   },
   {
-    path: '/todo/:id/edit',
+    path: '/todo/edit/:id?',
     component: todoEdit,
   },
   {
